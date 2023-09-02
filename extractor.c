@@ -34,7 +34,6 @@ int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 	int height = 0;
 	int bit_width, bit_length;
 	avifRGBImage rgb;
-	memset(&rgb, 0, sizeof(rgb));
 	SYSTEM_INFO info;
 
 	avifDecoder *decoder = avifDecoderCreate();
