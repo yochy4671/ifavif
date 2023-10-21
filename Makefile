@@ -188,6 +188,8 @@ $(DEPENDENCY_OUTPUT_DIRECTORY)/lib/libdav1d.a: | $(DEPENDENCY_SOURCE_DIRECTORY_D
 			--prefix "$(DEPENDENCY_OUTPUT_DIRECTORY)" \
 			--buildtype release \
 			-Ddefault_library=static \
+			-Denable_tools=false \
+			-Denable_tests=fale \
 			--cross-file $(abspath external/meson_toolchains/mingw32_$(TARGET_ARCH)_meson.ini) && \
 		ninja -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) && \
 		ninja -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) install
