@@ -16,7 +16,7 @@ The following binaries are available:
 
 * Ubuntu
 ```
-$ sudo apt install mingw-w64 meson nasm
+$ sudo apt install mingw-w64 meson nasm cmake
 ```
 
 ## Building
