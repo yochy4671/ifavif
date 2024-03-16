@@ -164,7 +164,7 @@ DEPENDENCY_SOURCE_DIRECTORY_LIBAVIF := $(DEPENDENCY_SOURCE_DIRECTORY)/libavif
 DEPENDENCY_SOURCE_FILE_DAV1D := $(DEPENDENCY_SOURCE_DIRECTORY)/dav1d.tar.bz2
 DEPENDENCY_SOURCE_FILE_LIBAVIF := $(DEPENDENCY_SOURCE_DIRECTORY)/libavif.tar.gz
 
-DEPENDENCY_SOURCE_URL_DAV1D := https://code.videolan.org/videolan/dav1d/-/archive/1.4.0/dav1d-1.4.0.tar.bz2
+DEPENDENCY_SOURCE_URL_DAV1D := https://code.videolan.org/videolan/dav1d/-/archive/1.4.1/dav1d-1.4.1.tar.bz2
 DEPENDENCY_SOURCE_URL_LIBAVIF := https://github.com/AOMediaCodec/libavif/archive/refs/tags/v1.0.4.tar.gz
 
 $(DEPENDENCY_SOURCE_FILE_DAV1D): | $(DEPENDENCY_SOURCE_DIRECTORY)
