@@ -16,4 +16,4 @@
 *.spi
 *.sph
 *.dep.make
-
+build-*intel32/
