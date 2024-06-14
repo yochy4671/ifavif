@@ -168,8 +168,8 @@ $(DEPENDENCY_OUTPUT_DIRECTORY)/lib/libdav1d.a: | $(DEPENDENCY_SOURCE_DIRECTORY_D
 			-Denable_tools=false \
 			-Denable_tests=false \
 			--cross-file $(abspath external/meson_toolchains/mingw32_$(TARGET_ARCH)_meson.ini) && \
-		ninja -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) && \
-		ninja -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) install
+		meson compile -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) && \
+		meson install -C $(DEPENDENCY_BUILD_DIRECTORY_DAV1D)
 
 $(DEPENDENCY_OUTPUT_DIRECTORY)/lib/libavif.a: $(DEPENDENCY_OUTPUT_DIRECTORY)/lib/libdav1d.a | $(DEPENDENCY_SOURCE_DIRECTORY_LIBAVIF) $(DEPENDENCY_OUTPUT_DIRECTORY)
 	PKG_CONFIG_PATH=$(DEPENDENCY_OUTPUT_DIRECTORY)/lib/pkgconfig \
