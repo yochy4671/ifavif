@@ -164,7 +164,7 @@ $(DEPENDENCY_OUTPUT_DIRECTORY)/lib/libdav1d.a: | $(DEPENDENCY_SOURCE_DIRECTORY_D
 		meson setup $(DEPENDENCY_BUILD_DIRECTORY_DAV1D) \
 			--prefix "$(DEPENDENCY_OUTPUT_DIRECTORY)" \
 			--buildtype release \
-			-Ddefault_library=static \
+			--default-library static \
 			-Denable_tools=false \
 			-Denable_tests=false \
 			--cross-file $(abspath external/meson_toolchains/mingw32_$(TARGET_ARCH)_meson.ini) && \
