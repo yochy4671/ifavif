@@ -16,12 +16,12 @@ The following binaries are available:
 
 * Ubuntu
 ```
-$ sudo apt install mingw-w64 meson nasm cmake
+$ sudo apt install mingw-w64 meson nasm cmake ninja-build
 ```
 
 ## Building
 
-After cloning submodules and preparing the environment, a simple invocation of `make` will generate `ifavif.spi`.  
+After cloning repository with submodules using `git clone --recursive` and preparing the environment, a simple invocation of `make` will generate `ifavif.spi`.   
 
 ## How to use
 
