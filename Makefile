@@ -47,7 +47,7 @@ INCFLAGS += -I. -I..
 ALLSRCFLAGS += $(INCFLAGS) -DGIT_TAG=\"$(GIT_TAG)\"
 OPTFLAGS := -O3
 ifeq (x$(TARGET_ARCH),xintel32)
-OPTFLAGS += -march=core2 -mfpmath=sse
+OPTFLAGS += -march=pentium4 -mfpmath=sse
 endif
 ifeq (x$(TARGET_ARCH),xintel32)
 ifneq (x$(USE_STABS_DEBUG),x0)
