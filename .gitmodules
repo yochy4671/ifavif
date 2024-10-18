@@ -1,10 +1,7 @@
 [submodule "external/meson_toolchains"]
 	path = external/meson_toolchains
-	url = https://github.com/uyjulian/meson_toolchains.git
+	url = https://github.com/yochy4671/meson_toolchains.git
 	ignore = dirty
 [submodule "build-source/libavif"]
 	path = build-source/libavif
 	url = https://github.com/AOMediaCodec/libavif
-[submodule "build-source/dav1d"]
-	path = build-source/dav1d
-	url = https://github.com/videolan/dav1d
