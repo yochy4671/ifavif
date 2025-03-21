@@ -79,18 +79,6 @@ int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 		{
 			goto cleanup;
 		}
-		// Flip along the horizontal axis
-		for (int j = 0; j < height / 2; j++)
-		{
-			DWORD *curbit_1 = (DWORD*)(bitmap_data + j * bit_length);
-			DWORD *curbit_2 = (DWORD*)(bitmap_data + (height - (1 + j)) * bit_length);
-			for (int i = 0; i < width; i++)
-			{
-				DWORD tmp = curbit_1[i];
-				curbit_1[i] = curbit_2[i];
-				curbit_2[i] = tmp;
-			}
-		}
 	} else {
 		goto cleanup;
 	}
@@ -110,7 +98,7 @@ int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 
 	bitmap_info_header->biSize = sizeof(BITMAPINFOHEADER);
 	bitmap_info_header->biWidth = width;
-	bitmap_info_header->biHeight = height;
+	bitmap_info_header->biHeight = -height;
 	bitmap_info_header->biPlanes = 1;
 	bitmap_info_header->biBitCount = 32;
 	bitmap_info_header->biCompression = BI_RGB;
