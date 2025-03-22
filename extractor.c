@@ -51,35 +51,35 @@ int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 		goto cleanup;
 	}
 	result = avifDecoderNextImage(decoder);
-	if (result == AVIF_RESULT_OK) {
-		width = decoder->image->width;
-		height = decoder->image->height;
-		bit_width = width * 4;
-		bit_length = bit_width;
-		avifRGBImageSetDefaults(&rgb, decoder->image);
-		rgb.depth = 8;
-		rgb.format = AVIF_RGB_FORMAT_BGRA;
-		rgb.maxThreads = info.dwNumberOfProcessors;
+	if (result != AVIF_RESULT_OK)
+	{
+		goto cleanup;
+	}
+	width = decoder->image->width;
+	height = decoder->image->height;
+	bit_width = width * 4;
+	bit_length = bit_width;
+	avifRGBImageSetDefaults(&rgb, decoder->image);
+	rgb.depth = 8;
+	rgb.format = AVIF_RGB_FORMAT_BGRA;
+	rgb.maxThreads = info.dwNumberOfProcessors;
 
-		*h_bitmap_data = LocalAlloc(LMEM_MOVEABLE, sizeof(uint8_t) * bit_length * height);
-		if (!*h_bitmap_data)
-		{
-			goto cleanup;
-		}
-		bitmap_data = (uint8_t*)LocalLock(*h_bitmap_data);
-		if (!bitmap_data)
-		{
-			LocalFree(*h_bitmap_data);
-			*h_bitmap_data = NULL;
-			goto cleanup;
-		}
-		rgb.pixels = bitmap_data;
-		rgb.rowBytes = sizeof(uint8_t) * bit_length;
-		if (avifImageYUVToRGB(decoder->image, &rgb) != AVIF_RESULT_OK)
-		{
-			goto cleanup;
-		}
-	} else {
+	*h_bitmap_data = LocalAlloc(LMEM_MOVEABLE, sizeof(uint8_t) * bit_length * height);
+	if (!*h_bitmap_data)
+	{
+		goto cleanup;
+	}
+	bitmap_data = (uint8_t*)LocalLock(*h_bitmap_data);
+	if (!bitmap_data)
+	{
+		LocalFree(*h_bitmap_data);
+		*h_bitmap_data = NULL;
+		goto cleanup;
+	}
+	rgb.pixels = bitmap_data;
+	rgb.rowBytes = sizeof(uint8_t) * bit_length;
+	if (avifImageYUVToRGB(decoder->image, &rgb) != AVIF_RESULT_OK)
+	{
 		goto cleanup;
 	}
 
