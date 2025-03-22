@@ -22,7 +22,7 @@ const char *plugin_info[4] = {
 
 const int header_size = 64;
 
-int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
+static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 				   HANDLE* h_bitmap_info,
 				   HANDLE* h_bitmap_data) {
 	BITMAPINFOHEADER* bitmap_info_header = NULL;
