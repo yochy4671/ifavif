@@ -28,6 +28,8 @@ static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 	BITMAPINFOHEADER* bitmap_info_header = NULL;
 	uint8_t *bitmap_data = NULL;
 
+	int ret_result = -1;
+
 	int width = 0;
 	int height = 0;
 	int bit_width, bit_length;
@@ -63,16 +65,16 @@ static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 	rgb.maxThreads = info.dwNumberOfProcessors;
 
 	*h_bitmap_data = LocalAlloc(LMEM_MOVEABLE, sizeof(uint8_t) * bit_length * height);
-	if (NULL == *h_bitmap_data)
+	if (!*h_bitmap_data)
 	{
-		return -1;
+		goto cleanup;
 	}
 	bitmap_data = (uint8_t*)LocalLock(*h_bitmap_data);
-	if (NULL == bitmap_data)
+	if (!bitmap_data)
 	{
 		LocalFree(*h_bitmap_data);
 		*h_bitmap_data = NULL;
-		return -1;
+		goto cleanup;
 	}
 	rgb.pixels = bitmap_data;
 	rgb.rowBytes = sizeof(uint8_t) * bit_length;
@@ -104,14 +106,22 @@ static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 
 	LocalUnlock(*h_bitmap_data);
 	LocalUnlock(*h_bitmap_info);
-	avifDecoderDestroy(decoder);
-	return 0;
+	ret_result = 0;
 cleanup:
-	LocalUnlock(*h_bitmap_data);
-	LocalFree(*h_bitmap_data);
-	*h_bitmap_data = NULL;
+	if (ret_result && bitmap_data)
+	{
+		LocalUnlock(*h_bitmap_data);
+		LocalFree(*h_bitmap_data);
+		*h_bitmap_data = NULL;
+	}
+	if (ret_result && bitmap_info_header)
+	{
+		LocalUnlock(*h_bitmap_info);
+		LocalFree(*h_bitmap_info);
+		*h_bitmap_info = NULL;
+	}
 	avifDecoderDestroy(decoder);
-	return -1;
+	return ret_result;
 }
 
 BOOL IsSupportedEx(const char *data) {
