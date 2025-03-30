@@ -26,6 +26,9 @@ typedef struct SusiePictureInfo_ {
 	WORD x_density;   // Horizontal density of pixels
 	WORD y_density;   // Vertical density of pixels
 	short colorDepth; // Number of bits per pixel
+#ifdef _WIN64
+	char dummy[2];  // alignment
+#endif
 	HLOCAL hInfo;     // Text information in the image
 } SusiePictureInfo;
 #pragma pack(pop)
