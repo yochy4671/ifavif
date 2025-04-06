@@ -23,9 +23,10 @@ const char *plugin_info[4] = {
 const int header_size = 64;
 
 static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
-				   HANDLE* h_bitmap_info,
-				   HANDLE* h_bitmap_data) {
-	BITMAPINFOHEADER* bitmap_info_header = NULL;
+						  HANDLE *h_bitmap_info,
+						  HANDLE *h_bitmap_data)
+{
+	BITMAPINFOHEADER *bitmap_info_header = NULL;
 	uint8_t *bitmap_data = NULL;
 
 	int ret_result = -1;
@@ -69,7 +70,7 @@ static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 	{
 		goto cleanup;
 	}
-	bitmap_data = (uint8_t*)LocalLock(*h_bitmap_data);
+	bitmap_data = (uint8_t *)LocalLock(*h_bitmap_data);
 	if (!bitmap_data)
 	{
 		LocalFree(*h_bitmap_data);
@@ -88,7 +89,7 @@ static int getBMPFromAVIF(const uint8_t *input_data, size_t file_size,
 	{
 		goto cleanup;
 	}
-	bitmap_info_header = (BITMAPINFOHEADER*)LocalLock(*h_bitmap_info);
+	bitmap_info_header = (BITMAPINFOHEADER *)LocalLock(*h_bitmap_info);
 	if (NULL == bitmap_info_header)
 	{
 		LocalFree(*h_bitmap_info);
@@ -124,8 +125,9 @@ cleanup:
 	return ret_result;
 }
 
-BOOL IsSupportedEx(const char *data) {
-	if(strncmp(data + 4, "ftypavif", 8) == 0)
+BOOL IsSupportedEx(const char *data)
+{
+	if (strncmp(data + 4, "ftypavif", 8) == 0)
 	{
 		return TRUE;
 	}
@@ -168,12 +170,13 @@ cleanup:
 	return ret_result;
 }
 
-int GetPictureEx(size_t data_size, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data, const char *data) {
+int GetPictureEx(size_t data_size, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data, const char *data)
+{
 	if (progress_callback != NULL)
 		if (progress_callback(1, 1, user_data))
 			return SPI_ABORT;
 
-	if (getBMPFromAVIF((const uint8_t*)data, data_size, bitmap_info, bitmap_data))
+	if (getBMPFromAVIF((const uint8_t *)data, data_size, bitmap_info, bitmap_data))
 		return SPI_MEMORY_ERROR;
 
 	if (progress_callback != NULL)
