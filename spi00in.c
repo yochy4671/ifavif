@@ -85,7 +85,7 @@ EXPORT(int) IsSupportedW(LPCWSTR filename, DWORD_PTR variant)
 	return IsSupported(NULL, variant);
 }
 
-static int GetBufferFromHandle(HANDLE file_handle, size_t buffer_length, const char** out_data, size_t* out_data_size)
+static int GetBufferFromHandle(HANDLE file_handle, LONG_PTR buffer_length, const char** out_data, size_t* out_data_size)
 {
 	char *data;
 	size_t data_size;
@@ -125,7 +125,7 @@ static int GetBufferFromHandle(HANDLE file_handle, size_t buffer_length, const c
 	return SPI_ALL_RIGHT;
 }
 
-EXPORT(int) GetPictureInfo(LPCSTR buffer, size_t buffer_length, unsigned int flag, SusiePictureInfo *picture_info)
+EXPORT(int) GetPictureInfo(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, SusiePictureInfo *picture_info)
 {
 	const char *data;
 	size_t data_size;
@@ -167,7 +167,7 @@ EXPORT(int) GetPictureInfo(LPCSTR buffer, size_t buffer_length, unsigned int fla
 	return ret;
 }
 
-EXPORT(int) GetPictureInfoW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, SusiePictureInfo *picture_info)
+EXPORT(int) GetPictureInfoW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, SusiePictureInfo *picture_info)
 {
 	const char *data;
 	size_t data_size;
@@ -195,7 +195,7 @@ EXPORT(int) GetPictureInfoW(LPCWSTR buffer, size_t buffer_length, unsigned int f
 	return ret;
 }
 
-EXPORT(int) GetPicture(LPCSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data)
+EXPORT(int) GetPicture(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, LONG_PTR user_data)
 {
 	int ret;
 	const char *data;
@@ -239,7 +239,7 @@ EXPORT(int) GetPicture(LPCSTR buffer, size_t buffer_length, unsigned int flag, H
 	return ret;
 }
 
-EXPORT(int) GetPictureW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data)
+EXPORT(int) GetPictureW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, LONG_PTR user_data)
 {
 	int ret;
 	const char *data;
@@ -269,12 +269,12 @@ EXPORT(int) GetPictureW(LPCWSTR buffer, size_t buffer_length, unsigned int flag,
 	return ret;
 }
 
-EXPORT(int) GetPreview(LPCSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, intptr_t user_data)
+EXPORT(int) GetPreview(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, LONG_PTR user_data)
 {
 	return GetPicture(buffer, buffer_length, flag, bitmap_info, bitmap_data, lpPrgressCallback, user_data);
 }
 
-EXPORT(int) GetPreviewW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, intptr_t user_data)
+EXPORT(int) GetPreviewW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, LONG_PTR user_data)
 {
 	return GetPictureW(buffer, buffer_length, flag, bitmap_info, bitmap_data, lpPrgressCallback, user_data);
 }

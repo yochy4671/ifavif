@@ -55,14 +55,14 @@ typedef struct SusiePictureInfo_ {
 #define SPI_OUTPUT_MEMORY (1 << 8) // Output is an image in memory
 
 // Function prototype declarations for '00IN' (Image plugin)
-typedef int(CALLBACK *SPI_PROGRESS)(int, int, intptr_t);
+typedef int(CALLBACK *SPI_PROGRESS)(int, int, LONG_PTR);
 EXPORT(int) GetPluginInfo(int info_number, LPSTR buffer, int buffer_length);
 EXPORT(int) GetPluginInfoW(int info_number, LPWSTR buffer, int buffer_length);
 EXPORT(int) IsSupported(LPCSTR filename, DWORD_PTR variant);
 EXPORT(int) IsSupportedW(LPCWSTR filename, DWORD_PTR variant);
-EXPORT(int) GetPictureInfo(LPCSTR buffer, size_t buffer_length, unsigned int flag, SusiePictureInfo *picture_info);
-EXPORT(int) GetPictureInfoW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, SusiePictureInfo *picture_info);
-EXPORT(int) GetPicture(LPCSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data);
-EXPORT(int) GetPictureW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, intptr_t user_data);
-EXPORT(int) GetPreview(LPCSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, intptr_t user_data);
-EXPORT(int) GetPreviewW(LPCWSTR buffer, size_t buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, intptr_t user_data);
+EXPORT(int) GetPictureInfo(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, SusiePictureInfo *picture_info);
+EXPORT(int) GetPictureInfoW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, SusiePictureInfo *picture_info);
+EXPORT(int) GetPicture(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, LONG_PTR user_data);
+EXPORT(int) GetPictureW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS progress_callback, LONG_PTR user_data);
+EXPORT(int) GetPreview(LPCSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, LONG_PTR user_data);
+EXPORT(int) GetPreviewW(LPCWSTR buffer, LONG_PTR buffer_length, unsigned int flag, HANDLE *bitmap_info, HANDLE *bitmap_data, SPI_PROGRESS lpPrgressCallback, LONG_PTR user_data);
